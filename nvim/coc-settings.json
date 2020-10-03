@@ -1,0 +1,16 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "scss",
+    "less",
+    "Markdown",
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "graphql"
+  ],
+  "git.changedSign.hlGroup": "false",
+  "typescript.showUnused": false
+}
