@@ -9,7 +9,7 @@ export TERM=xterm-256color
 ZSH_THEME="agnoster"
 
 # alias
-alias ips='ifconfig | grep -Eo '\''inet (addr:)?172\.([0-9]*\.){2}[0-9]*'\'' | grep -Eo '\''([0-9]*\.){3}[0-9]*'\'' | grep -v '\''127.0.0.1'\'
+alias ip='ifconfig | grep -Eo '\''inet (addr:)?172\.([0-9]*\.){2}[0-9]*'\'' | grep -Eo '\''([0-9]*\.){3}[0-9]*'\'' | grep -v '\''127.0.0.1'\'
 alias z='zsh'
 alias o='open'
 alias h='history'

@@ -73,6 +73,8 @@
   Plug 'leafgarland/typescript-vim'
   Plug 'peitalin/vim-jsx-typescript'
   Plug 'KeitaNakamura/neodark.vim'
+  Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf.vim'
   " Plug 'joshdick/onedark.vim'
 
   call plug#end()
