@@ -92,14 +92,7 @@
   set history=1000                    " Store a ton of history (default is 20)
   set nospell                         " Spell checking on
   set hidden                          " Allow buffer switching without saving
-
-  if has('clipboard')
-      if has('unnamedplus')           " When possible use + register for copy-paste
-          set clipboard=unnamed,unnamedplus
-      else                            " On mac and Windows, use * register for copy-paste
-          set clipboard=unnamed
-      endif
-  endif
+  set clipboard^=unnamed,unnamedplus  " Cross-platform value for copy-paste
 
 " ==========
 " Formatting
@@ -256,11 +249,6 @@
     \ <SID>check_back_space() ? "\<TAB>" :
   \ coc#refresh()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-
-  " coc
-  " let g:user_emmet_leader_key='<C-J>'
-  " let g:user_emmet_expandabbr_key='<Tab>'
-  " imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " ==========
 " Functions

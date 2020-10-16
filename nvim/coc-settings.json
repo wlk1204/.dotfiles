@@ -11,6 +11,14 @@
     "json",
     "graphql"
   ],
-  "git.changedSign.hlGroup": "false",
-  "typescript.showUnused": false
+  "typescript.showUnused": false,
+  "typescript.suggest.autoImports": true,
+  "typescript.preferences.importModuleSpecifier": "auto",
+  "diagnostic.enable": true,
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.errorSign": "×",
+  "git.enableGutters": true,
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete"
 }
