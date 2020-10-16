@@ -75,8 +75,6 @@
   Plug 'KeitaNakamura/neodark.vim'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
-  " Plug 'joshdick/onedark.vim'
-
   call plug#end()
 
 " ==========
@@ -185,20 +183,24 @@
   nnoremap <Leader>bl :ls<CR>
   nnoremap <Leader>bp :bp<CR>
   nnoremap <Leader>bn :bn<CR>
-  for i in range(1, 20)
+  for i in range(1, 30)
     execute "nnoremap <Leader>b" . i . " :" . i . "b<CR>"
   endfor
   execute "nnoremap <Leader>vs :vs<CR>"
+
  " Adjust viewports to the same size
   map <Leader>= <C-w>=
+
   " Easier horizontal scrolling
   map zl zL
   map zh zH
   nmap <silent> <leader>/ :set invhlsearch<CR>
+
   " Map <Leader>ff to display all lines with keyword under cursor and ask which one to jump to
   nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
   vnoremap < <gv
   vnoremap > >gv
+
   " repeat operator http://stackoverflow.com/a/8064607/127816
   vnoremap . :normal .<CR>
 
@@ -257,7 +259,6 @@
 
   " coc
   " let g:user_emmet_leader_key='<C-J>'
-
   " let g:user_emmet_expandabbr_key='<Tab>'
   " imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
@@ -267,7 +268,6 @@
   " trigger background
   function! ToggleBG()
       let s:tbg = &background
-      " Inversion
       if s:tbg == "dark"
           set background=light
       else
@@ -288,15 +288,16 @@
       call <SID>ExpandFilenameAndExecute("tabedit", "~/.vimrc")
   endfunction
 
+  if !exists('*WindowNumber')
+    function! WindowNumber(...)
+      let builder = a:1
+      let context = a:2
+      call builder.add_section('airline_b', '%{tabpagewinnr(tabpagenr())}')
+      return 0
+    endfunction
+    call airline#add_statusline_func('WindowNumber')
+    call airline#add_inactive_statusline_func('WindowNumber')
+  endif
+
   execute "noremap " . s:edit_config_mapping " :call <SID>EditVimrcConfig()<CR>"
   execute "noremap " . s:apply_config_mapping . " :source ~/.vimrc<CR>"
-
-  function! WindowNumber(...)
-    let builder = a:1
-    let context = a:2
-    call builder.add_section('airline_b', '%{tabpagewinnr(tabpagenr())}')
-    return 0
-  endfunction
-
-  call airline#add_statusline_func('WindowNumber')
-  call airline#add_inactive_statusline_func('WindowNumber')
