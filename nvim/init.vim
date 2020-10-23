@@ -171,6 +171,9 @@
   map <C-K> <C-W>k<C-W>_
   map <C-L> <C-W>l<C-W>_
   map <C-H> <C-W>h<C-W>_
+  map <leader>d <C-d>
+  map <leader>u <C-u>
+  map <leader>r <C-r>
 
   " buffer
   nnoremap <Leader>bl :ls<CR>
@@ -180,6 +183,7 @@
     execute "nnoremap <Leader>b" . i . " :" . i . "b<CR>"
   endfor
   execute "nnoremap <Leader>vs :vs<CR>"
+  execute "nnoremap <Leader>bd :bd<CR>"
 
  " Adjust viewports to the same size
   map <Leader>= <C-w>=

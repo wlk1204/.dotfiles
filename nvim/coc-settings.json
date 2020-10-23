@@ -11,6 +11,7 @@
     "json",
     "graphql"
   ],
+  "tsserver.enableJavascript": false,
   "typescript.showUnused": false,
   "typescript.suggest.autoImports": true,
   "typescript.preferences.importModuleSpecifier": "auto",
