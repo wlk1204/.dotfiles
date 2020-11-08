@@ -75,6 +75,7 @@
   Plug 'KeitaNakamura/neodark.vim'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
+  Plug 'psliwka/vim-smoothie'
   call plug#end()
 
 " ==========
