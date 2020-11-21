@@ -76,6 +76,7 @@
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'psliwka/vim-smoothie'
+  Plug 'kristijanhusak/vim-carbon-now-sh'
   call plug#end()
 
 " ==========
@@ -254,6 +255,9 @@
     \ <SID>check_back_space() ? "\<TAB>" :
   \ coc#refresh()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+
+  " carbon key
+  vnoremap <F5> :CarbonNowSh<CR>
 
 " ==========
 " Functions

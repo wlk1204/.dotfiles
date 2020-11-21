@@ -11,7 +11,7 @@ nvim -v
 
 
 
-### neovim
+### tmux
 ```bash
 brew install tmux
 tmux -V
