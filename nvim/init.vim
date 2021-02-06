@@ -72,11 +72,15 @@
   Plug 'terryma/vim-multiple-cursors'
   Plug 'leafgarland/typescript-vim'
   Plug 'peitalin/vim-jsx-typescript'
-  Plug 'KeitaNakamura/neodark.vim'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'psliwka/vim-smoothie'
   Plug 'kristijanhusak/vim-carbon-now-sh'
+  Plug 'KeitaNakamura/neodark.vim'
+  Plug 'morhetz/gruvbox'
+  Plug 'lifepillar/vim-solarized8'
+  Plug 'joshdick/onedark.vim'
+
   call plug#end()
 
 " ==========
@@ -114,19 +118,23 @@
   filetype plugin indent on           " Automatically detect file types.
   autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx syntax=typescript.tsx
   autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx syntax=javascript.jsx
-	scriptencoding utf-8
+  scriptencoding utf-8
 
 " ==========
 " Vim UI
 " ==========
+  let g:onedark_terminal_italics = 1
+  let g:airline_theme='onedark'
+
   syntax on
   " solarized gruvbox neodark onedark
-  colorscheme neodark
-  let g:neodark#background = '#202020'
+  colorscheme onedark
+  " let g:neodark#background = '#202020'
   set background=dark
   set termguicolors
+
   highlight clear SignColumn
-	highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
+  highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
   set tabpagemax=15               " Only show 15 tabs
   set showmode                    " Display the current mode
   set cursorline                  " Highlight current line
@@ -149,7 +157,7 @@
   set foldmethod=marker
   set list
   set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
-  " set relativenumber            " Show relative line numbers
+  " set relativenumber            " Show relative line numbers 注释掉不显示行号
   if has('cmdline_info')
       set ruler                   " Show the ruler
       set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
@@ -230,39 +238,39 @@
   map <C-e> :NERDTreeToggle<CR>
   map <leader>e :NERDTreeFind<CR>
 
-  " Hide NERDTree folder trailing slashes
+  " NERDTree 隐藏尾部文件斜杠
   augroup nerdtreehidetirslashes
     autocmd!
     autocmd FileType nerdtree syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
   augroup end
 
-  " after a re-source, fix syntax matching issues
+  " 重新加载 .vimrc 时刷新 webdevicon
   if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
   endif
 
   " airline
-  let g:airline#extensions#tabline#enabled = 1        " tabline enabled
+  let g:airline#extensions#tabline#enabled = 0        " tabline enabled 1 显示 0 隐藏
   let g:airline#extensions#tabline#fnamemod = ':t'    " only show filename
   let g:airline#extensions#tabline#buffer_nr_show = 1
 
   " Remap keys for gotos
   nmap <silent> gd <Plug>(coc-definition)
 
-  " coc.vim use tab key for trigger completion
+  " coc.vim 用 tab 键触发补全
   inoremap <silent><expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
     \ <SID>check_back_space() ? "\<TAB>" :
   \ coc#refresh()
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
-  " carbon key
+  " carbon 插件快捷键
   vnoremap <F5> :CarbonNowSh<CR>
 
 " ==========
-" Functions
+" 功能函数
 " ==========
-  " trigger background
+  " 更换背景色
   function! ToggleBG()
       let s:tbg = &background
       if s:tbg == "dark"
@@ -272,19 +280,13 @@
       endif
   endfunction
 
+  " 检查行尾空格
   function! s:check_back_space() abort
       let col = col('.') - 1
       return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
 
-  function! s:ExpandFilenameAndExecute(command, file)
-      execute a:command . " " . expand(a:file, ":p")
-  endfunction
-
-  function! s:EditVimrcConfig()
-      call <SID>ExpandFilenameAndExecute("tabedit", "~/.vimrc")
-  endfunction
-
+  " 窗口加标号
   if !exists('*WindowNumber')
     function! WindowNumber(...)
       let builder = a:1
@@ -295,6 +297,15 @@
     call airline#add_statusline_func('WindowNumber')
     call airline#add_inactive_statusline_func('WindowNumber')
   endif
+
+  function! s:ExpandFilenameAndExecute(command, file)
+      execute a:command . " " . expand(a:file, ":p")
+  endfunction
+
+  " 编辑 .vimrc
+  function! s:EditVimrcConfig()
+      call <SID>ExpandFilenameAndExecute("tabedit", "~/.vimrc")
+  endfunction
 
   execute "noremap " . s:edit_config_mapping " :call <SID>EditVimrcConfig()<CR>"
   execute "noremap " . s:apply_config_mapping . " :source ~/.vimrc<CR>"

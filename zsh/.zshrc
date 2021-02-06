@@ -41,6 +41,7 @@ plugins=(
   zsh-autosuggestions
   autojump
 )
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 
 # python
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
@@ -49,6 +50,8 @@ export PKG_CONFIG_PATH="/usr/local/opt/python@3.8/lib/pkgconfig"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+export DEFAULT_USER="$(whoami)"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
