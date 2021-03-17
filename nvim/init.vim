@@ -58,25 +58,26 @@
   endif
 
   call plug#begin('~/.vim/plugged')
-  Plug 'scrooloose/nerdtree'
-  Plug 'ryanoasis/vim-devicons'
+  Plug 'scrooloose/nerdtree'                            " 目录
+  Plug 'ryanoasis/vim-devicons'                         " icon
+  Plug 'editorconfig/editorconfig-vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'tpope/vim-surround'
-  Plug 'scrooloose/nerdcommenter'
-  Plug 'mattn/emmet-vim'
-  Plug 'raimondi/delimitMate'
-  Plug 'vim-airline/vim-airline'
-  Plug 'easymotion/vim-easymotion'
-  Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'terryma/vim-multiple-cursors'
-  Plug 'leafgarland/typescript-vim'
-  Plug 'peitalin/vim-jsx-typescript'
-  Plug 'junegunn/fzf'
+  Plug 'tpope/vim-surround'                             " 边界操作
+  Plug 'scrooloose/nerdcommenter'                       " 自动注释
+  Plug 'mattn/emmet-vim'                                " 代码补全
+  Plug 'raimondi/delimitMate'                           " 自动完成括号、引号
+  Plug 'vim-airline/vim-airline'                        " 底部菜单
+  Plug 'easymotion/vim-easymotion'                      " 快速移动
+  Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }    " space 提示键
+  Plug 'ctrlpvim/ctrlp.vim'                             " 搜索文件
+  Plug 'terryma/vim-multiple-cursors'                   " 单词多选
+  Plug 'leafgarland/typescript-vim'                     " 支持 ts 文件
+  Plug 'peitalin/vim-jsx-typescript'                    " React JSX 代码高亮
+  Plug 'junegunn/fzf'                                   " 目录内搜索
   Plug 'junegunn/fzf.vim'
-  Plug 'psliwka/vim-smoothie'
-  Plug 'kristijanhusak/vim-carbon-now-sh'
-  Plug 'KeitaNakamura/neodark.vim'
+  Plug 'psliwka/vim-smoothie'                           " 窗口平滑移动
+  Plug 'kristijanhusak/vim-carbon-now-sh'               " carbon 截图
+  Plug 'KeitaNakamura/neodark.vim'                      " 主题
   Plug 'morhetz/gruvbox'
   Plug 'lifepillar/vim-solarized8'
   Plug 'joshdick/onedark.vim'
@@ -123,7 +124,8 @@
 " ==========
 " Vim UI
 " ==========
-  let g:onedark_terminal_italics = 1
+  let g:onedark_terminal_italics = 1 " 斜体
+  " let g:onedark_hide_endofbuffer = 1 " 隐藏结尾 ’～‘ 符号
   let g:airline_theme='onedark'
 
   syntax on
@@ -133,6 +135,8 @@
   set background=dark
   set termguicolors
 
+  " 隐藏结尾 ’～‘ 符号
+  highlight EndOfBuffer ctermfg=bg guifg=bg
   highlight clear SignColumn
   highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
   set tabpagemax=15               " Only show 15 tabs
