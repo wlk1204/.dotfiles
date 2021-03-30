@@ -117,8 +117,7 @@
   set pastetoggle=<F12>               " pastetoggle (sane indentation on pastes)
   set comments=sl:/*,mb:*,elx:*/      " auto format comment blocks
   filetype plugin indent on           " Automatically detect file types.
-  autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx syntax=typescript.tsx
-  autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx syntax=javascript.jsx
+  autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
   scriptencoding utf-8
 
 " ==========
@@ -227,8 +226,12 @@
   " delimitMate
   let g:delimitMate_expand_cr = 1            " auto indent
 
-  " NERDTree
+  " NERD Commenter
+  let g:NERDCreateDefaultMappings = 1
   let g:NERDSpaceDelims=1
+  " let g:NERDCustomDelimiters = { 'typescript.tsx': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' } }
+
+  " NERDTree
   let NERDTreeShowHidden=1                   " show hidden files
   let NERDTreeQuitOnOpen=0
   let NERDTreeMinimalUI = 1                  " disable that old “Press ? for help”
@@ -258,8 +261,12 @@
   let g:airline#extensions#tabline#fnamemod = ':t'    " only show filename
   let g:airline#extensions#tabline#buffer_nr_show = 1
 
-  " Remap keys for gotos
-  nmap <silent> gd <Plug>(coc-definition)
+  " coc 映射
+  nmap <silent> <Leader>gd <Plug>(coc-definition)
+  nmap <silent> <Leader>jne <Plug>(coc-diagnostic-next-error)
+  nmap <silent> <Leader>jpe <Plug>(coc-diagnostic-prev-error)
+  nmap <silent> <Leader>jnw <Plug>(coc-diagnostic-next)
+  nmap <silent> <Leader>jpw <Plug>(coc-diagnostic-prev)
 
   " coc.vim 用 tab 键触发补全
   inoremap <silent><expr> <TAB>
