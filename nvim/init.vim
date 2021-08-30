@@ -73,6 +73,8 @@
   Plug 'terryma/vim-multiple-cursors'                   " 单词多选
   Plug 'leafgarland/typescript-vim'                     " 支持 ts 文件
   Plug 'peitalin/vim-jsx-typescript'                    " React JSX 代码高亮
+  " Plug 'epilande/vim-react-snippets'
+  " Plug 'SirVer/ultisnips'
   Plug 'junegunn/fzf'                                   " 目录内搜索
   Plug 'junegunn/fzf.vim'
   Plug 'psliwka/vim-smoothie'                           " 窗口平滑移动
@@ -138,6 +140,7 @@
   highlight EndOfBuffer ctermfg=bg guifg=bg
   highlight clear SignColumn
   highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
+  hi ReduxHooksKeywords ctermfg=204 guifg=#519deb
   set tabpagemax=15               " Only show 15 tabs
   set showmode                    " Display the current mode
   set cursorline                  " Highlight current line
@@ -197,6 +200,7 @@
   endfor
   execute "nnoremap <Leader>vs :vs<CR>"
   execute "nnoremap <Leader>bd :bd<CR>"
+  execute "nnoremap <Leader>sp :sp<CR>"
 
  " Adjust viewports to the same size
   map <Leader>= <C-w>=
@@ -267,6 +271,7 @@
   nmap <silent> <Leader>jpe <Plug>(coc-diagnostic-prev-error)
   nmap <silent> <Leader>jnw <Plug>(coc-diagnostic-next)
   nmap <silent> <Leader>jpw <Plug>(coc-diagnostic-prev)
+  nmap <silent> <leader>fo :CocFix<CR>
 
   " coc.vim 用 tab 键触发补全
   inoremap <silent><expr> <TAB>

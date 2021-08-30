@@ -2,7 +2,11 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/wanglk/.oh-my-zsh"
+
+# https://stackoverflow.com/questions/61433167/zsh-detects-insecure-completion-dependent-directories 不生效
+ZSH_DISABLE_COMPFIX="true"
+
+export ZSH="/Users/niefeng/.oh-my-zsh"
 export TERM=xterm-256color
 
 # themes "agnoster" "af-magic"
@@ -34,6 +38,8 @@ alias tit="fa --inner trace"
 alias ls="exa --icons"
 alias ll="exa --icons -l"
 alias cat="bat"
+
+alias code='open -a Visual\ Studio\ Code.app'
 
 # plugins
 plugins=(

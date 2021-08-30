@@ -68,6 +68,17 @@ brew install --cask font-hack-nerd-font
 
 
 
+### 安装 coc 插件
+
+```bash
+# coc-eslint 检查代码 eslint
+# coc-prettier 格式化代码
+:CocInstall coc-prettier coc-git coc-eslint coc-emmet coc-tsserver coc-html
+```
+
+
+
+
 ### 安装 tmux
 ```bash
 # 1. 安装
