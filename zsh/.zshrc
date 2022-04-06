@@ -9,7 +9,7 @@ ZSH_DISABLE_COMPFIX="true"
 export ZSH="/Users/niefeng/.oh-my-zsh"
 export TERM=xterm-256color
 
-# themes "agnoster" "af-magic"
+# themes "agnoster" "af-magic" "powerlevel9k/powerlevel9k"
 ZSH_THEME="agnoster"
 
 # alias
@@ -29,8 +29,8 @@ alias vi='nvim'
 alias vim='nvim'
 # tmux
 alias t='tmux'
-alias tl='t ls'
-alias tk='t kill-session -t'
+alias tl='tmux ls'
+alias tk='tmux kill-session -t'
 # fastroute
 alias ti="fa trace"
 alias tit="fa --inner trace"
@@ -38,6 +38,9 @@ alias tit="fa --inner trace"
 alias ls="exa --icons"
 alias ll="exa --icons -l"
 alias cat="bat"
+# git
+alias ga="gitmoji -"
+alias gc="gitmoji -c"
 
 alias code='open -a Visual\ Studio\ Code.app'
 

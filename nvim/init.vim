@@ -83,6 +83,7 @@
   Plug 'morhetz/gruvbox'
   Plug 'lifepillar/vim-solarized8'
   Plug 'joshdick/onedark.vim'
+  Plug 'github/copilot.vim'
 
   call plug#end()
 
@@ -131,8 +132,8 @@
 
   syntax on
   " solarized gruvbox neodark onedark
-  colorscheme onedark
-  " let g:neodark#background = '#202020'
+  colorscheme neodark
+  " let g:neodark#background = '#303643'
   set background=dark
   set termguicolors
 
@@ -236,7 +237,8 @@
   " let g:NERDCustomDelimiters = { 'typescript.tsx': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' } }
 
   " NERDTree
-  let NERDTreeShowHidden=1                   " show hidden files
+  let NERDTreeShowHidden=1                   " 显示隐藏文件
+  " let g:NERDTreeWinPos = "right"
   let NERDTreeQuitOnOpen=0
   let NERDTreeMinimalUI = 1                  " disable that old “Press ? for help”
   let NERDTreeAutoDeleteBuffer = 1           " https://medium.com/@victormours/a-better-nerdtree-setup-3d3921abc0b9
