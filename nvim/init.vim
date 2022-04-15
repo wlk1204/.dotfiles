@@ -1,6 +1,6 @@
 "
 "   This is the personal .vimrc file of wanglk.
-"   You can find me at https://github.com/wlk1204/wlk1204-vim
+"   You can find me at https://github.com/wlk1204/dotfiles/blob/main/nvim/init.vim
 "
 
 " ==========
@@ -22,7 +22,7 @@
   set nocompatible  " Must be first line
 
   if !WINDOWS()
-      set shell=/bin/sh
+    set shell=/bin/sh
   endif
   if WINDOWS()
     set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
@@ -50,7 +50,6 @@
 " ==========
 " Plugins
 " ==========
-
   if empty(glob('~/.vim/autoload/plug.vim'))
       silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
           \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -58,32 +57,33 @@
   endif
 
   call plug#begin('~/.vim/plugged')
-  Plug 'scrooloose/nerdtree'                            " 目录
-  Plug 'ryanoasis/vim-devicons'                         " icon
-  Plug 'editorconfig/editorconfig-vim'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'scrooloose/nerdtree'                            " 目录树
+  Plug 'ryanoasis/vim-devicons'                         " 目录树icon
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}       " LSP 功能支持 & 插件体系
   Plug 'tpope/vim-surround'                             " 边界操作
-  Plug 'scrooloose/nerdcommenter'                       " 自动注释
-  Plug 'mattn/emmet-vim'                                " 代码补全
-  Plug 'raimondi/delimitMate'                           " 自动完成括号、引号
+  Plug 'preservim/nerdcommenter'                        " 代码注释
+  Plug 'mattn/emmet-vim'                                " html & css 代码补全
+  Plug 'raimondi/delimitMate'                           " 符号自动补全
   Plug 'vim-airline/vim-airline'                        " 底部菜单
-  Plug 'easymotion/vim-easymotion'                      " 快速移动
-  Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }    " space 提示键
-  Plug 'ctrlpvim/ctrlp.vim'                             " 搜索文件
+  Plug 'easymotion/vim-easymotion'                      " 光标快速跳转
   Plug 'terryma/vim-multiple-cursors'                   " 单词多选
+
   Plug 'leafgarland/typescript-vim'                     " 支持 ts 文件
   Plug 'peitalin/vim-jsx-typescript'                    " React JSX 代码高亮
-  " Plug 'epilande/vim-react-snippets'
-  " Plug 'SirVer/ultisnips'
   Plug 'junegunn/fzf'                                   " 目录内搜索
   Plug 'junegunn/fzf.vim'
-  Plug 'psliwka/vim-smoothie'                           " 窗口平滑移动
-  Plug 'kristijanhusak/vim-carbon-now-sh'               " carbon 截图
-  Plug 'KeitaNakamura/neodark.vim'                      " 主题
-  Plug 'morhetz/gruvbox'
-  Plug 'lifepillar/vim-solarized8'
-  Plug 'joshdick/onedark.vim'
+  Plug 'psliwka/vim-smoothie'                           " 窗口平滑滚动
+  Plug 'kristijanhusak/vim-carbon-now-sh'               " carbon 代码截图
+  Plug 'KeitaNakamura/neodark.vim'                      " 主题1
+  Plug 'morhetz/gruvbox'                                " 主题2
+  Plug 'lifepillar/vim-solarized8'                      " 主题3
+  Plug 'joshdick/onedark.vim'                           " 主题4
   Plug 'github/copilot.vim'
+  Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }    " space 提示键
+  Plug 'ctrlpvim/ctrlp.vim'                             " 搜索文件
+  Plug 'editorconfig/editorconfig-vim'
+  " Plug 'epilande/vim-react-snippets'
+  " Plug 'SirVer/ultisnips'
 
   call plug#end()
 
@@ -234,7 +234,7 @@
   " NERD Commenter
   let g:NERDCreateDefaultMappings = 1
   let g:NERDSpaceDelims=1
-  " let g:NERDCustomDelimiters = { 'typescript.tsx': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' } }
+  " let g:NERDCustomDelimiters = { 'typescriptreact': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/' } }
 
   " NERDTree
   let NERDTreeShowHidden=1                   " 显示隐藏文件
