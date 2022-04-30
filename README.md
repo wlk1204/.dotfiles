@@ -1,5 +1,23 @@
 # dotfiles
-Dot files of Tools for coding.
+> 王立康的 Coding 工作流配置文件。
+
+
+
+### 介绍
+
+```bash
+.
+├── LICENSE
+├── README.md
+├── nvim													# neovim 配置
+│   ├── coc-settings.json					# coc 配置文件
+│   └── init.vim									# vim 配置
+├── tmux
+│   ├── .tmux.conf								# tmux 文件，重要勿修改
+│   └── .tmux.conf.local					# tmux 自定义配置文件，可修改
+└── zsh
+    └── .zshrc										# zsh 配置文件
+```
 
 
 
@@ -86,4 +104,25 @@ brew install tmux
 tmux -V
 
 # 2. 将 tmux 下 .tmux.conf 文件 copy 到 ～/.tmux.conf 路径下
+# 3. 将 tmux 下 .tmux.conf.local 文件 copy 到 ～/.tmux.conf.local 路径下
+# 4. 安装 tmux plugin
+  1. git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  2. 执行 prefix + i 安装
 ```
+
+
+
+### 其它
+
+```bash
+# zsh autojump 插件
+brew install autojump
+
+# vim fzf 插件的依赖项
+brew install fzf
+brew install the_silver_searcher
+
+# tree 工具
+brew install tree
+```
+
