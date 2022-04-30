@@ -68,9 +68,10 @@
   Plug 'easymotion/vim-easymotion'                      " 光标快速跳转
   Plug 'terryma/vim-multiple-cursors'                   " 单词多选
 
+  Plug 'posva/vim-vue'
   Plug 'leafgarland/typescript-vim'                     " 支持 ts 文件
   Plug 'peitalin/vim-jsx-typescript'                    " React JSX 代码高亮
-  Plug 'junegunn/fzf'                                   " 目录内搜索
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }   " 目录内搜索
   Plug 'junegunn/fzf.vim'
   Plug 'psliwka/vim-smoothie'                           " 窗口平滑滚动
   Plug 'kristijanhusak/vim-carbon-now-sh'               " carbon 代码截图
