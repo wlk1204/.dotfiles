@@ -3,9 +3,8 @@
 "   You can find me at https://github.com/wlk1204/dotfiles/blob/main/nvim/init.vim
 "
 
-" ==========
-" Environment
-" ==========
+" -- Environment -------------------------------------------------------------------
+
   silent function! OSX()
       return has('macunix')
   endfunction
@@ -16,40 +15,25 @@
       return  (has('win32') || has('win64'))
   endfunction
 
-" ==========
-" Windows Compatible
-" ==========
+
+" -- Windows Compatible ------------------------------------------------------------
+
   set nocompatible  " Must be first line
 
-  if !WINDOWS()
-    set shell=/bin/sh
-  endif
-  if WINDOWS()
-    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+  " if !WINDOWS()
+    " set shell=/bin/sh
+  " endif
+
+
+" -- GUI Settings ------------------------------------------------------------------
+
+  if &term == 'xterm' || &term == 'screen'
+    set t_Co=256            " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
   endif
 
-" ==========
-" GUI Settings
-" ==========
-  if has('gui_running')
-      set guioptions-=T           " Remove the toolbar
-      set lines=40                " 40 lines of text instead of 24
-      if LINUX() && has("gui_running")
-          set guifont=Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
-      elseif OSX() && has("gui_running")
-          set guifont=HackNerdFontComplete-Regular:h14,Menlo\ Regular:h14,Consolas\ Regular:h14,Courier\ New\ Regular:h14
-      elseif WINDOWS() && has("gui_running")
-          set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
-      endif
-  else
-      if &term == 'xterm' || &term == 'screen'
-          set t_Co=256            " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
-      endif
-  endif
 
-" ==========
-" Plugins
-" ==========
+" -- Plugins -----------------------------------------------------------------------
+
   if empty(glob('~/.vim/autoload/plug.vim'))
       silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
           \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -88,9 +72,9 @@
 
   call plug#end()
 
-" ==========
-" General
-" ==========
+
+" -- General -----------------------------------------------------------------------
+
   set noswapfile                      " no swap files
   set noundofile                      " no undo files
   set nobackup                        " no backup files
@@ -105,9 +89,9 @@
   set hidden                          " Allow buffer switching without saving
   set clipboard^=unnamed,unnamedplus  " Cross-platform value for copy-paste
 
-" ==========
-" Formatting
-" ==========
+
+" -- Formatting --------------------------------------------------------------------
+
   set encoding=utf8
   set nowrap                          " Do not wrap long lines
   set autoindent                      " Indent at the same level of the previous line
@@ -124,9 +108,9 @@
   autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
   scriptencoding utf-8
 
-" ==========
-" Vim UI
-" ==========
+
+" -- Vim UI ------------------------------------------------------------------------
+
   let g:onedark_terminal_italics = 1 " 斜体
   " let g:onedark_hide_endofbuffer = 1 " 隐藏结尾 ’～‘ 符号
   let g:airline_theme='onedark'
@@ -172,9 +156,9 @@
       set showcmd                 " Show partial commands in status line and
   endif
 
-" ==========
-" Key(re) Mappings
-" ==========
+
+" -- Key Mappings ------------------------------------------------------------------
+
   let mapleader = ' '
   let maplocalleader = '_'
   let s:edit_config_mapping = '<leader>ev'
@@ -220,9 +204,9 @@
   " repeat operator http://stackoverflow.com/a/8064607/127816
   vnoremap . :normal .<CR>
 
-" ==========
-" Plugin Settings
-" ==========
+
+" -- Plugin Custom Settings --------------------------------------------------------
+
   " ctrlp
   let g:ctrlp_map = '<leader>p'
 
@@ -286,9 +270,9 @@
   " carbon 插件快捷键
   vnoremap <F5> :CarbonNowSh<CR>
 
-" ==========
-" 功能函数
-" ==========
+
+" -- Functions ---------------------------------------------------------------------
+
   " 更换背景色
   function! ToggleBG()
       let s:tbg = &background
