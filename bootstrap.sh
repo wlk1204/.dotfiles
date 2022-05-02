@@ -42,14 +42,19 @@ error() {
   exit 1
 }
 
+happy() {
+  msg "\n${Green}> Happy to ${1}. 😄${Color_off}\n"
+  exit 1
+}
+
 welcome() {
   echo_with_color ${Blue} "                                                     /## /##                  "
   echo_with_color ${Blue} "                                                    | ##| ##                  "
-  echo_with_color ${Blue} "         /##  /##  /##  /######  /######$   /###### | ##| ##   /##            "
+  echo_with_color ${Blue} "         /##  /##  /##  /######  /#######   /###### | ##| ##   /##            "
   echo_with_color ${Blue} "        | ## | ## | ## |____  ##| ##__  ## /##__  ##| ##| ##  /##/            "
-  echo_with_color ${Blue} "        | ## | ## | ##  /######$| ##  \ ##| ##  \ ##| ##| ######/             "
+  echo_with_color ${Blue} "        | ## | ## | ##  /#######| ##  \ ##| ##  \ ##| ##| ######/             "
   echo_with_color ${Blue} "        | ## | ## | ## /##__  ##| ##  | ##| ##  | ##| ##| ##_  ##             "
-  echo_with_color ${Blue} "        |  ####$/####/|  ######$| ##  | ##|  ######$| ##| ## \  ##            "
+  echo_with_color ${Blue} "        |  #####/####/|  #######| ##  | ##|  #######| ##| ## \  ##            "
   echo_with_color ${Blue} "         \_____/\___/  \_______/|__/  |__/ \____  ##|__/|__/  \__/            "
   echo_with_color ${Blue} "                                           /##  \ ##                          "
   echo_with_color ${Blue} "                                          |  ######/                          "
@@ -61,7 +66,7 @@ welcome() {
 fetch_repo() {
   if [ -d "$HOME/.dotfiles" ]
   then
-    info "Trying to update dotfiles"
+    info "Trying to update .dotfiles"
     cd "$HOME/.dotfiles"
     git pull
     cd - > /dev/null 2>&1
@@ -90,14 +95,17 @@ install_tmux() {
     then
       if hash "tmux" &>/dev/null
       then
+
         if [ ! -e "$HOME/.tmux.conf" ]
         then
           ln -s "$HOME/.dotfiles/tmux/.tmux.conf" "$HOME/.tmux.conf"
         fi
+
         if [ ! -e "$HOME/.tmux.conf.local" ]
         then
           ln -s "$HOME/.dotfiles/tmux/.tmux.conf.local" "$HOME/.tmux.conf.local"
         fi
+
         success "Successfully install tmux."
       fi
     else
@@ -112,7 +120,7 @@ install_tmux() {
     success "Checking: tmux-plugins/tpm exist."
   else
     info "Trying to clone tmux-plugins ..."
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
     if [ $? -eq 0 ]
     then
       success "Successfully clone tmux-plugins/tpm."
@@ -120,14 +128,66 @@ install_tmux() {
       error "Failed to clone tmux-plugins/tpm."
       exit 0
     fi
-    # TODO: 插件无法自动安装，需手动 prefix + I
+    # TODO: 插件无法自动安装，需手动 <prefix> + I
     # tmux send-keys -t 0 'cd project/dotfiles' C-m
     success "Successfully install tmux-plugins/tpm."
   fi
+
+  happy "tmux"
 }
 
 install_vim() {
-  echo "开始安装 vim"
+  if hash "nvim" &>/dev/null
+  then
+    success "Checking: neovim is exist."
+  else
+    info "开始安装 neovim"
+    bash -c "brew install neovim"
+    if [ $? -eq 0 ]
+    then
+      if hash "nvim" &>/dev/null
+      then
+
+        if [ ! -e "$HOME/.config.nvim" ]
+        then
+          ln -s "$HOME/.dotfiles/nvim" "$HOME/.config/nvim"
+        fi
+
+        if [ ! -e "$HOME/.vimrc" ]
+        then
+          ln -s "$HOME/.dotfiles/nvim/init.vim" "$HOME/.vimrc"
+        fi
+
+        if [ ! -e "$HOME/.local/share/nvim/site/autoload/plug.vim" ]
+        then
+          bash -c "sh -c 'curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'"
+        fi
+
+        if [ ! -e "$HOME/.vim/autoload/plug.vim" ]
+        then
+          bash -c "sh -c 'curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'"
+        fi
+
+        success "Successfully install neovim."
+      fi
+    else
+      error "Failed to install neovim."
+      exit 0
+    fi
+  fi
+
+  # 自动安装 vim plugs
+  info "开始安装 vim plugins..."
+  bash -c "nvim +PlugInstall +qall"
+  success "Successfully install vim plugins."
+
+  info "开始安装 coc plugins..."
+  bash -c 'nvim +"CocInstall coc-git coc-eslint coc-emmet coc-tsserver coc-html" +qall'
+  success "Successfully install coc plugins."
+
+  happy "nvim"
 }
 
 install_zsh() {
@@ -193,6 +253,7 @@ main() {
   else
     welcome
     need_cmd 'git'
+    need_cmd 'brew'
     install
   fi
 }

@@ -34,8 +34,8 @@
 
 " -- Plugins -----------------------------------------------------------------------
 
-  if empty(glob('~/.vim/autoload/plug.vim'))
-      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+  if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+      silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
           \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
       autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   endif
@@ -106,6 +106,7 @@
   set comments=sl:/*,mb:*,elx:*/      " auto format comment blocks
   filetype plugin indent on           " Automatically detect file types.
   autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+  autocmd BufEnter *.* set colorcolumn=0 " 80 colorcolumn set color none
   scriptencoding utf-8
 
 
@@ -258,6 +259,7 @@
   nmap <silent> <Leader>jpe <Plug>(coc-diagnostic-prev-error)
   nmap <silent> <Leader>jnw <Plug>(coc-diagnostic-next)
   nmap <silent> <Leader>jpw <Plug>(coc-diagnostic-prev)
+  nmap <silent> <Leader>gc <Plug>(coc-git-commit)
   nmap <silent> <leader>fo :CocFix<CR>
 
   " coc.vim 用 tab 键触发补全
