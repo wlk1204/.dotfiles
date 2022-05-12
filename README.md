@@ -1,6 +1,8 @@
-# dotfiles
+# .dotfiles
 
-> 王立康的 Coding 工作流配置文件。
+> 个人的 Coding 工作流配置文件。
+
+![示例](https://raw.githubusercontent.com/wlk1204/PicGo-images/main/images/vim.png)
 
 ### Get Started
 
@@ -10,7 +12,7 @@
 bash <(curl -sLf https://raw.githubusercontent.com/wlk1204/PicGo-images/main/images/bootstrap.sh)
 ```
 
-- 手动安装，参考下列 Install
+- 手动安装，参考下列 `Step to Install`
 
 ### Intro
 
@@ -116,13 +118,13 @@ nvim +PlugInstall +qall
 :PlugInstall
 
 # 5. 执行安装 coc 插件命令
-nvim +"CocInstall coc-git coc-eslint coc-emmet coc-tsserver coc-html" +qall
+nvim +"CocInstall coc-git coc-eslint coc-emmet coc-tsserver coc-html coc-prettier coc-vetur" +qall
 
 # 或 进入到 vim 环境中，执行
-:CocInstall coc-prettier coc-git coc-eslint coc-emmet coc-tsserver coc-html coc-vetur
+:CocInstall coc-git coc-eslint coc-emmet coc-tsserver coc-html coc-prettier coc-vetur
 ```
 
-#### 其它
+#### Others
 
 ```bash
 # 安装 Neovim 下字体

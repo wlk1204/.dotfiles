@@ -3,29 +3,9 @@
 "   You can find me at https://github.com/wlk1204/dotfiles/blob/main/nvim/init.vim
 "
 
-" -- Environment -------------------------------------------------------------------
-
-  silent function! OSX()
-      return has('macunix')
-  endfunction
-  silent function! LINUX()
-      return has('unix') && !has('macunix') && !has('win32unix')
-  endfunction
-  silent function! WINDOWS()
-      return  (has('win32') || has('win64'))
-  endfunction
-
-
-" -- Windows Compatible ------------------------------------------------------------
-
-  set nocompatible  " Must be first line
-
-  " if !WINDOWS()
-    " set shell=/bin/sh
-  " endif
-
-
 " -- GUI Settings ------------------------------------------------------------------
+
+  set nocompatible          " Must be first line
 
   if &term == 'xterm' || &term == 'screen'
     set t_Co=256            " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
@@ -33,12 +13,6 @@
 
 
 " -- Plugins -----------------------------------------------------------------------
-
-  if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-      silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
-          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-      autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
 
   call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'                            " 目录树
@@ -69,7 +43,6 @@
   Plug 'editorconfig/editorconfig-vim'
   " Plug 'epilande/vim-react-snippets'
   " Plug 'SirVer/ultisnips'
-
   call plug#end()
 
 

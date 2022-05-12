@@ -7,11 +7,12 @@
 # ---------------------------------------------------------
 
 
-# Init option
+# Init
 Color_off='\033[0m'       # Text Reset
 Version='1.0.0'
+Email='wlk90god@gmail.com'
 
-# Regular Colors
+# Colors
 Black='\033[0;30m'        # Black
 Red='\033[0;31m'          # Red
 Green='\033[0;32m'        # Green
@@ -47,6 +48,23 @@ happy() {
   exit 1
 }
 
+# brew 安装程序
+brew_cask_install() {
+  info "开始安装 $1..."
+  if [ -n "$(brew ls | grep $1)" ]
+  then
+    success "Checking: $1 已存在."
+  else
+    if [[ $2 && $2 = "cask" ]]
+    then
+      bash -c "brew install --cask $1"
+    else
+      bash -c "brew install $1"
+    fi
+    success "Successfully install $1."
+  fi
+}
+
 welcome() {
   echo_with_color ${Blue} "                                                     /## /##                  "
   echo_with_color ${Blue} "                                                    | ##| ##                  "
@@ -60,9 +78,10 @@ welcome() {
   echo_with_color ${Blue} "                                          |  ######/                          "
   echo_with_color ${Blue} "                                           \______/                           "
   echo_with_color ${Blue} "                                                                              "
-  echo_with_color ${Blue} "                Version: ${Version}  by : wlk90god@gmail.com \n               "
+  echo_with_color ${Blue} "                Version: ${Version}  by : ${Email} \n                         "
 }
 
+# fetch 仓库
 fetch_repo() {
   if [ -d "$HOME/.dotfiles" ]
   then
@@ -84,6 +103,7 @@ fetch_repo() {
   fi
 }
 
+# 安装 tmux
 install_tmux() {
   if hash "tmux" &>/dev/null
   then
@@ -136,6 +156,7 @@ install_tmux() {
   happy "tmux"
 }
 
+# 安装 vim
 install_vim() {
   if hash "nvim" &>/dev/null
   then
@@ -178,18 +199,27 @@ install_vim() {
     fi
   fi
 
-  # 自动安装 vim plugs
+  # 自动安装 vim plugins
   info "开始安装 vim plugins..."
   bash -c "nvim +PlugInstall +qall"
   success "Successfully install vim plugins."
 
+  # 自动安装 coc plugins
   info "开始安装 coc plugins..."
-  bash -c 'nvim +"CocInstall coc-git coc-eslint coc-emmet coc-tsserver coc-html" +qall'
+  bash -c 'nvim +"CocInstall coc-git coc-eslint coc-emmet coc-tsserver coc-html coc-prettier coc-vetur" +qall'
   success "Successfully install coc plugins."
+
+  # 自动安装字体
+  bash -c "brew tap homebrew/cask-fonts"
+  brew_cask_install "font-fira-code" "cask"
+  brew_cask_install "font-hack-nerd-font" "cask"
+  brew_cask_install "fzf"
+  brew_cask_install "the_silver_searcher"
 
   happy "nvim"
 }
 
+# 安装 zsh
 install_zsh() {
   echo "开始安装 zsh"
 }
@@ -220,7 +250,7 @@ install() {
 
   read APP
 
-  # fetch_repo
+  fetch_repo
 
   case ${app_list[APP]} in
     tmux)
