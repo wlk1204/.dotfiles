@@ -222,12 +222,12 @@ install_vim() {
 # 安装 zsh
 install_zsh() {
   echo "开始安装 zsh"
+  echo "命令未开放，下次再来😄"
 }
 
 install_all() {
   install_tmux
   install_vim
-  install_zsh
 }
 
 need_cmd() {

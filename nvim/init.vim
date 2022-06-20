@@ -245,6 +245,8 @@
   " carbon 插件快捷键
   vnoremap <F5> :CarbonNowSh<CR>
 
+  xmap <leader>a  <Plug>(coc-codeaction-selected)
+  nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " -- Functions ---------------------------------------------------------------------
 

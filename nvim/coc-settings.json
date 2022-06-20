@@ -17,6 +17,10 @@
 
   "prettier.enable": false,
   "prettier.disableLanguages": ["vue"],
+  "prettier.bracketSpacing": true,
+  "prettier.printWidth": 80,
+  "prettier.semi": true,
+  "prettier.singleQuote": true,
 
   "typescript.showUnused": false,
   "typescript.suggest.autoImports": true,
