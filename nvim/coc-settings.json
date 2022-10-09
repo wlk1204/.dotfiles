@@ -1,4 +1,5 @@
 {
+  /* formatOnSave hot */
   "coc.preferences.formatOnSaveFiletypes": [
     "html",
     "css",
@@ -9,34 +10,57 @@
     "typescript",
     "typescriptreact",
     "javascript",
-    "javascriptreact"
+    "javascriptreact",
+    "sh"
   ],
 
-  "eslint.autoFixOnSave": true,
-  "tsserver.enableJavascript": false,
+  /* coc-stylelintplus */
+  "stylelintplus.enable": true,
+  "stylelintplus.autoFixOnSave": true,
+  "stylelintplus.autoFixOnFormat": true,
+  "stylelintplus.validateOnSave": true,
+  "stylelintplus.filetypes": ["scss", "less"],
 
-  "prettier.enable": false,
+  /* coc-eslint hot */
+  "eslint.autoFixOnSave": true /* cold */,
+
+  /* coc-prettier hot */
+  "prettier.enable": false /* cold */,
   "prettier.disableLanguages": ["vue"],
   "prettier.bracketSpacing": true,
   "prettier.printWidth": 80,
   "prettier.semi": true,
   "prettier.singleQuote": true,
 
-  "typescript.showUnused": false,
+  /* coc-tsserver */
+  "tsserver.enable": true,
+  "tsserver.formatOnType": true,
+  "tsserver.enableJavascript": true,
+  "javascript.format.enabled": false, /* js 不自动格式化 */
+  "javascript.showUnused": true,
+  "typescript.showUnused": true,
+  "typescript.format.enabled": true,
+  "typescript.check.npmIsInstalled": true,
   "typescript.suggest.autoImports": true,
   "typescript.preferences.importModuleSpecifier": "auto",
+  "typescript.suggest.jsdoc.generateReturns": true,
 
-  "diagnostic.enable": true,
-  "diagnostic.warningSign": "⚠",
-  "diagnostic.errorSign": "×",
+  /* diagnostic hot */
+  "diagnostic.enable": true /* cold */,
+  "diagnostic.enableSign": true, 
+  "diagnostic.infoSign": "",
+  "diagnostic.errorSign": "",
+  "diagnostic.hintSign": "",
+  "diagnostic.warningSign": "",
 
-  "git.enableGutters": true,
+  /* coc-git hot */
+  "git.enableGutters": true /* cold */,
   "git.addedSign.hlGroup": "GitGutterAdd",
   "git.changedSign.hlGroup": "GitGutterChange",
   "git.removedSign.hlGroup": "GitGutterDelete",
   "git.topRemovedSign.hlGroup": "GitGutterDelete",
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-  // "git.addGBlameToVirtualText": true,
+  "git.addGBlameToVirtualText": true,
   "git.showCommitInFloating": true,
-  "git.semanticCommit.scope": false
+  "git.semanticCommit.scope": true
 }

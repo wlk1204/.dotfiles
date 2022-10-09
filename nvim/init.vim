@@ -85,8 +85,7 @@
 
 " -- Vim UI ------------------------------------------------------------------------
 
-  let g:onedark_terminal_italics = 1 " 斜体
-  " let g:onedark_hide_endofbuffer = 1 " 隐藏结尾 ’～‘ 符号
+  let g:onedark_terminal_italics = 1   " italics word
   let g:airline_theme='onedark'
 
   syntax on
@@ -96,10 +95,12 @@
   set background=dark
   set termguicolors
 
-  " 隐藏结尾 ’～‘ 符号
+  " 隐藏结尾 ’～‘ 符号 or " let g:onedark_hide_endofbuffer = 1
   highlight EndOfBuffer ctermfg=bg guifg=bg
   highlight clear SignColumn
-  highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
+  " 移除 highlight CocErrorHighlight ctermfg=Red
+  highlight CocErrorHighlight guifg=#d1666a
+  highlight CocErrorSign guifg=#d1666a
   hi ReduxHooksKeywords ctermfg=204 guifg=#519deb
   set tabpagemax=15               " Only show 15 tabs
   set showmode                    " Display the current mode
@@ -119,16 +120,16 @@
   set scrolljump=5                " Lines to scroll when cursor leaves screen
   set scrolloff=3                 " Minimum lines to keep above and below cursor
   set sidescrolloff=15
-  set foldenable                  " Auto fold code
-  set foldmethod=marker
+  set nofoldenable                " Auto fold code, nofoldenable or foldenable
+  set foldmethod=syntax           " fold by syntax
   set list
   set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
-  " set relativenumber            " Show relative line numbers 注释掉不显示行号
   if has('cmdline_info')
       set ruler                   " Show the ruler
       set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
       set showcmd                 " Show partial commands in status line and
   endif
+  " set relativenumber            " Show relative line numbers
 
 
 " -- Key Mappings ------------------------------------------------------------------
@@ -196,7 +197,7 @@
   " let g:NERDCustomDelimiters = { 'typescriptreact': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/' } }
 
   " NERDTree
-  let NERDTreeShowHidden=1                   " 显示隐藏文件
+  let NERDTreeShowHidden=1                   " show hidden dotfile
   " let g:NERDTreeWinPos = "right"
   let NERDTreeQuitOnOpen=0
   let NERDTreeMinimalUI = 1                  " disable that old “Press ? for help”
