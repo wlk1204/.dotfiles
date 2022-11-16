@@ -1,7 +1,39 @@
 {
-  /* formatOnSave hot */
+  "explorer.icon.enableNerdfont": true,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.file.reveal.whenOpen": false,
+  "explorer.file.reveal.auto": true,
+  "explorer.width": 30,
+  "explorer.buffer.root.template": "[icon & 1] OPEN EDITORS",
+  "explorer.file.root.template": "[icon & 1] PROJECT ([root])",
+  "explorer.keyMappings.global": {
+    "o": ["expandable?", ["wait", "expanded?", "collapse", "expand"], "open"],
+    "s": "open:vsplit",
+    "S": "open:split",
+    "mm": "rename",
+    "mc": "copyFile",
+    "C": "copyFile",
+    "md": "delete",
+    "D": "delete",
+    "ma": "addFile",
+    "mA": "addDirectory"
+  },
+
+  /* coc-eslint hot */
+  "eslint.format.enable": true,
+  "eslint.autoFixOnSave": true /* cold */,
+  "eslint.fixOnSaveTimeout": 0,
+  "eslint.alwaysShowStatus": true,
+
+  /* coc-prettier hot */
+  "prettier.enable": false /* cold */,
+  "prettier.disableLanguages": [],
+  "prettier.bracketSpacing": true,
+  "prettier.printWidth": 80,
+  "prettier.semi": true,
+  "prettier.singleQuote": true,
   "coc.preferences.formatOnSaveFiletypes": [
-    "html",
+    // "html",
     "css",
     "scss",
     "less",
@@ -12,6 +44,7 @@
     "javascript",
     "javascriptreact",
     "sh"
+    // "vue"
   ],
 
   /* coc-stylelintplus */
@@ -21,25 +54,19 @@
   "stylelintplus.validateOnSave": true,
   "stylelintplus.filetypes": ["scss", "less"],
 
-  /* coc-eslint hot */
-  "eslint.autoFixOnSave": true /* cold */,
-
-  /* coc-prettier hot */
-  "prettier.enable": false /* cold */,
-  "prettier.disableLanguages": ["vue"],
-  "prettier.bracketSpacing": true,
-  "prettier.printWidth": 80,
-  "prettier.semi": true,
-  "prettier.singleQuote": true,
+  /* coc-vetur */
+  "vetur.format.enable": true,
+  "vetur.trace.server": "verbose",
+  "vetur.format.defaultFormatter.js": "vscode-typescript",
 
   /* coc-tsserver */
   "tsserver.enable": true,
   "tsserver.formatOnType": true,
   "tsserver.enableJavascript": true,
-  "javascript.format.enabled": false, /* js 不自动格式化 */
+  "javascript.format.enabled": true /* js 自动格式化 */,
   "javascript.showUnused": true,
   "typescript.showUnused": true,
-  "typescript.format.enabled": true,
+  "typescript.format.enabled": false /* !!!! */,
   "typescript.check.npmIsInstalled": true,
   "typescript.suggest.autoImports": true,
   "typescript.preferences.importModuleSpecifier": "auto",
@@ -47,7 +74,7 @@
 
   /* diagnostic hot */
   "diagnostic.enable": true /* cold */,
-  "diagnostic.enableSign": true, 
+  "diagnostic.enableSign": true,
   "diagnostic.infoSign": "",
   "diagnostic.errorSign": "",
   "diagnostic.hintSign": "",

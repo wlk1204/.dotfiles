@@ -15,7 +15,7 @@
 " -- Plugins -----------------------------------------------------------------------
 
   call plug#begin('~/.vim/plugged')
-  Plug 'scrooloose/nerdtree'                            " 目录树
+  " Plug 'scrooloose/nerdtree'                            " 目录树
   Plug 'ryanoasis/vim-devicons'                         " 目录树icon
   Plug 'neoclide/coc.nvim', {'branch': 'release'}       " LSP 功能支持 & 插件体系
   Plug 'tpope/vim-surround'                             " 边界操作
@@ -35,7 +35,6 @@
   Plug 'kristijanhusak/vim-carbon-now-sh'               " carbon 代码截图
   Plug 'KeitaNakamura/neodark.vim'                      " 主题1
   Plug 'morhetz/gruvbox'                                " 主题2
-  Plug 'lifepillar/vim-solarized8'                      " 主题3
   Plug 'joshdick/onedark.vim'                           " 主题4
   Plug 'github/copilot.vim'
   Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }    " space 提示键
@@ -89,8 +88,7 @@
   let g:airline_theme='onedark'
 
   syntax on
-  " solarized gruvbox neodark onedark
-  colorscheme neodark
+  colorscheme neodark " solarized gruvbox neodark onedark
   " let g:neodark#background = '#303643'
   set background=dark
   set termguicolors
@@ -196,26 +194,32 @@
   let g:NERDSpaceDelims=1
   " let g:NERDCustomDelimiters = { 'typescriptreact': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/' } }
 
-  " NERDTree
-  let NERDTreeShowHidden=1                   " show hidden dotfile
-  " let g:NERDTreeWinPos = "right"
-  let NERDTreeQuitOnOpen=0
-  let NERDTreeMinimalUI = 1                  " disable that old “Press ? for help”
-  let NERDTreeAutoDeleteBuffer = 1           " https://medium.com/@victormours/a-better-nerdtree-setup-3d3921abc0b9
-  let NERDTreeDirArrowExpandable = "\u00a0"  " NERDTree remove arrow
-  let NERDTreeDirArrowCollapsible = "\u00a0"
-  let NERDTreeNodeDelimiter = "\x07"
-  let g:DevIconsEnableFoldersOpenClose = 1
+  " coc-explorer
+  let g:loaded_netrw = 1
+  let g:loaded_netrwPlugin = 1
+  autocmd User CocNvimInit :CocCommand explorer
+  map <leader>e <Cmd>CocCommand explorer --no-toggle<CR>
   map <leader>1 <C-h>
   map <leader>2 <C-l>
-  map <C-e> :NERDTreeToggle<CR>
-  map <leader>e :NERDTreeFind<CR>
+
+  " NERDTree
+  " let NERDTreeShowHidden=1                   " show hidden dotfile
+  " let g:NERDTreeWinPos = "right"
+  " let NERDTreeQuitOnOpen=0
+  " let NERDTreeMinimalUI = 1                  " disable that old “Press ? for help”
+  " let NERDTreeAutoDeleteBuffer = 1           " https://medium.com/@victormours/a-better-nerdtree-setup-3d3921abc0b9
+  " let NERDTreeDirArrowExpandable = "\u00a0"  " NERDTree remove arrow
+  " let NERDTreeDirArrowCollapsible = "\u00a0"
+  " let NERDTreeNodeDelimiter = "\x07"
+  " let g:DevIconsEnableFoldersOpenClose = 1
+  " map <C-e> :NERDTreeToggle<CR>
+  " map <leader>e :NERDTreeFind<CR>
 
   " NERDTree 隐藏尾部文件斜杠
-  augroup nerdtreehidetirslashes
-    autocmd!
-    autocmd FileType nerdtree syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
-  augroup end
+  " augroup nerdtreehidetirslashes
+    " autocmd!
+    " autocmd FileType nerdtree syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
+  " augroup end
 
   " 重新加载 .vimrc 时刷新 webdevicon
   if exists('g:loaded_webdevicons')
